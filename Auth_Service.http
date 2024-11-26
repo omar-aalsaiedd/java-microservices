@@ -1,0 +1,30 @@
+# Auth Service
+
+###
+# @name Register User
+POST http://localhost:8082/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+###
+# @name Login User
+POST http://localhost:8082/api/auth/signin
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+
+###
+# @name secured_test
+GET http://localhost:8082/api/test/secured
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTczMjE1NzY1NywiZXhwIjoxNzMyMTU3NzE3fQ.lPu6vMKxnUgjFy36_qCByZHOFWPFWE2ClTJUup4N3XFP1Tmn9AGlkb6lw2QOgA0zB4PxXfT556aa7H-bvS9Ohg
+
