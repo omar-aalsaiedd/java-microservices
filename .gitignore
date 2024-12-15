@@ -2,7 +2,13 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
+Auth_Service.http
+Auth_Service.postman_collection.json
+generalAuth.rar
+volume-data/**
+financial_tracker/.idea/**
+docker/**
+api-gateway/**
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
@@ -11,6 +17,8 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/**
+
 
 ### Eclipse ###
 .apt_generated

@@ -1,5 +1,8 @@
 server:
   port: 8081
+  error:
+    include-message: always
+    include-binding-errors: always
 
 spring:
   datasource:
@@ -18,3 +21,13 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+  liquibase:
+    change-log: classpath:db/master.xml
+
+logging:
+  level:
+    org:
+      springframework.security: TRACE
+      hibernate:
+        sql: DEBUG
+        type.descriptor.sql.basicBinder: TRACE
