@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="004-01" author="admin">
+        <createTable tableName="transactions">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" unique="true" />
+            </column>
+
+            <column name="amount" type="double">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="text" />
+
+            <column name="user_id" type="int">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="category_id" type="int">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="type_id" type="int">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="user_id" constraintName="trx_user_id" referencedTableName="users"
+                                 referencedColumnNames="id" />
+
+        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="category_id" constraintName="trx_cat_id" referencedTableName="categories"
+                                 referencedColumnNames="id" />
+
+        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="type_id" constraintName="trx_type_id" referencedTableName="expense_types"
+                                 referencedColumnNames="id" />
+
+        <rollback>
+            <dropAllForeignKeyConstraints baseTableName="transactions" />
+            <dropTable tableName="transactions" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet id="004-02" author="admin">
+        <addAutoIncrement tableName="transactions" columnName="id" />
+    </changeSet>
+</databaseChangeLog>

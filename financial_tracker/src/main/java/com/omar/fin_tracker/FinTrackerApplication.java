@@ -1,4 +1,4 @@
-package com.omar.fin_tracker;
+package com.omar.gateway.fin_tracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
