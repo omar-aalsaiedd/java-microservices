@@ -1,4 +1,4 @@
-package com.omar.gateway.fin_tracker.models;
+package com.omar.fin_tracker.models;
 
 import jakarta.persistence.*;
 import lombok.*;

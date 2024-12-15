@@ -1,11 +1,11 @@
-package com.omar.gateway.fin_tracker.mappers;
+package com.omar.fin_tracker.mappers;
 
-import com.omar.gateway.fin_tracker.DTOs.TransactionCreationDTO;
-import com.omar.gateway.fin_tracker.DTOs.TransactionDTO;
-import com.omar.gateway.fin_tracker.models.ExpenseType;
-import com.omar.gateway.fin_tracker.models.Transaction;
-import com.omar.gateway.fin_tracker.repositories.CategoryRepository;
-import com.omar.gateway.fin_tracker.repositories.ExpenseTypeRepository;
+import com.omar.fin_tracker.DTOs.TransactionCreationDTO;
+import com.omar.fin_tracker.DTOs.TransactionDTO;
+import com.omar.fin_tracker.models.ExpenseType;
+import com.omar.fin_tracker.models.Transaction;
+import com.omar.fin_tracker.repositories.CategoryRepository;
+import com.omar.fin_tracker.repositories.ExpenseTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -32,13 +32,13 @@ public class TransactionMapper {
     }
 
     // this will be used for saving
-    public Transaction toEntity(TransactionCreationDTO transactionDTO) {
+    public Transaction toEntity(TransactionCreationDTO transactionDTO, Long userId) {
 
         Optional<ExpenseType> type = expenseTypeRepository.findById(transactionDTO.getTypeId());
 
         Transaction.TransactionBuilder trx = Transaction.builder();
         // todo: to add the user from the auth service
-        trx.userId(1L);
+        trx.userId(userId);
         if (type.isPresent()) {
             trx.expenseType(type.get());
             trx.category(type.get().getCategory());

@@ -1,6 +1,6 @@
-package com.omar.gateway.fin_tracker.repositories;
+package com.omar.fin_tracker.repositories;
 
-import com.omar.gateway.fin_tracker.models.Transaction;
+import com.omar.fin_tracker.models.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -34,9 +34,6 @@
 
         </createTable>
 
-        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="user_id" constraintName="trx_user_id" referencedTableName="users"
-                                 referencedColumnNames="id" />
-
         <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="category_id" constraintName="trx_cat_id" referencedTableName="categories"
                                  referencedColumnNames="id" />
 

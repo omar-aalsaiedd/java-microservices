@@ -1,12 +1,12 @@
-package com.omar.gateway.fin_tracker.services.impl;
+package com.omar.fin_tracker.services.impl;
 
-import com.omar.gateway.fin_tracker.DTOs.TransactionCreationDTO;
-import com.omar.gateway.fin_tracker.DTOs.TransactionDTO;
-import com.omar.gateway.fin_tracker.DTOs.UserTransactionsDTO;
-import com.omar.gateway.fin_tracker.mappers.TransactionMapper;
-import com.omar.gateway.fin_tracker.models.Transaction;
-import com.omar.gateway.fin_tracker.repositories.TransactionRepository;
-import com.omar.gateway.fin_tracker.services.TransactionService;
+import com.omar.fin_tracker.DTOs.TransactionCreationDTO;
+import com.omar.fin_tracker.DTOs.TransactionDTO;
+import com.omar.fin_tracker.DTOs.UserTransactionsDTO;
+import com.omar.fin_tracker.mappers.TransactionMapper;
+import com.omar.fin_tracker.models.Transaction;
+import com.omar.fin_tracker.repositories.TransactionRepository;
+import com.omar.fin_tracker.services.TransactionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,9 +23,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public UserTransactionsDTO findUserTransaction(Long userId) {
-//        User user = userRepository.findById(userId).orElseThrow(
-//                () -> new IllegalArgumentException("User not found")
-//        );
 
         List<Transaction> transactions = transactionRepository.findByUserId(userId);
         double totalBalance = transactions.stream().mapToDouble(Transaction::getSignedAmount).sum();
@@ -43,27 +40,23 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     @Transactional
     public TransactionDTO save(Long userId, TransactionCreationDTO transactionCreationDTO) {
-//        User user = userRepository.findById(userId).orElseThrow(
-//                () -> new IllegalArgumentException("User not found")
-//        );
-
-
-        Transaction trx = transactionMapper.toEntity(transactionCreationDTO);
+        Transaction trx = transactionMapper.toEntity(transactionCreationDTO, userId);
 
         Transaction savedTrx = transactionRepository.save(trx);
         return transactionMapper.toDTO(savedTrx);
     }
 
     @Override
-    public void delete(Long transactionId) {
+    public void delete(Long UserId, Long transactionId) throws IllegalAccessException {
+
         Transaction trx = transactionRepository.findById(transactionId).orElseThrow(
                 () -> new IllegalArgumentException("Transaction not found")
         );
+
+        if(trx.getUserId() != UserId)
+            throw new IllegalAccessException("Transaction doesn't belong to this user");
+
         transactionRepository.delete(trx);
     }
 
-
-//    private boolean isValidToken(String token) {
-//
-//    }
 }

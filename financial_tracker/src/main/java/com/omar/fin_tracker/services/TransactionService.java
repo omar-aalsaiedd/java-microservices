@@ -1,8 +1,8 @@
-package com.omar.gateway.fin_tracker.services;
+package com.omar.fin_tracker.services;
 
-import com.omar.gateway.fin_tracker.DTOs.TransactionCreationDTO;
-import com.omar.gateway.fin_tracker.DTOs.TransactionDTO;
-import com.omar.gateway.fin_tracker.DTOs.UserTransactionsDTO;
+import com.omar.fin_tracker.DTOs.TransactionCreationDTO;
+import com.omar.fin_tracker.DTOs.TransactionDTO;
+import com.omar.fin_tracker.DTOs.UserTransactionsDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +12,6 @@ public interface TransactionService {
 
     TransactionDTO save(Long userId, TransactionCreationDTO transactionCreationDTO);
 
-    void delete(Long transactionId);
+    void delete(Long userId, Long transactionId) throws IllegalAccessException;
 
 }

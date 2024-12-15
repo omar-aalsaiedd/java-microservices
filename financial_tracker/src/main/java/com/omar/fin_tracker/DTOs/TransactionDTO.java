@@ -1,4 +1,4 @@
-package com.omar.gateway.fin_tracker.DTOs;
+package com.omar.fin_tracker.DTOs;
 
 import lombok.Builder;
 import lombok.Data;
