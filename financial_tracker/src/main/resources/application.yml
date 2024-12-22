@@ -1,3 +1,5 @@
+
+
 server:
   port: 8081
   error:
@@ -23,6 +25,8 @@ spring:
       enabled: true
   liquibase:
     change-log: classpath:db/master.xml
+  application:
+    name: FinTracker
 
 logging:
   level:
@@ -31,3 +35,9 @@ logging:
       hibernate:
         sql: DEBUG
         type.descriptor.sql.basicBinder: TRACE
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

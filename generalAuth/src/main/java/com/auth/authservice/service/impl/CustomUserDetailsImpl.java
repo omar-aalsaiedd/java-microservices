@@ -3,6 +3,7 @@ package com.auth.authservice.service.impl;
 import com.auth.authservice.model.User;
 import com.auth.authservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

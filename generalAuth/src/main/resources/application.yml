@@ -2,6 +2,8 @@ server:
   port: 8082
 
 spring:
+  application:
+    name: gateway
   datasource:
     username: postgres
     password: password
@@ -20,5 +22,31 @@ spring:
       enabled: true
 jwt:
   secret: 87efecac584acbe13cec78137f1da7a01151c205e8cc9db95ea7e2b05a4b17c4cd8b422da4af0ade8618544f5a84e243424d3720a075f66c3436b12ca57c7d06dbc26205182c006ed687e1d26369d136dc8cdb516d7421bd337b404073d2768d4f183350176240460299e9910bd87b2ab9357a9d437d5c8f793ecfae007f3e29270ef4ce85332bf9638c2f88230c526bf597420f4f793c281c9de6a63c5d0602c5a29e3941277ec2eb44eb52469660263358390f66e612255b636fb477dc3cc8fc3653f9a8645e9b7f85268a9cc562fa4bd00229e83f11e8ddeea98e9b25b49f7e7c0db025fd83f57e6546716d412c4b21e10e6efa4d62c6f6a83ee9ab34911b
-  expiration: 86400000 # 24 hours in milliseconds
-#  expiration: 60000
+  expiration: 86400000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 60
+    lease-expiration-duration-in-seconds: 90
+
+logging:
+  level:
+    com.netflix.discovery: INFO
+    org.springframework.cloud.netflix.eureka: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always

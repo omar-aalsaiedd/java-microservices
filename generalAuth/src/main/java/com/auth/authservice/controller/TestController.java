@@ -26,6 +26,6 @@ public class TestController {
 
     @GetMapping("/secured")
     public Long secured(@RequestHeader("Authorization") String token) {
-            return userRepository.findByUsername(jwtTokenProvider.getUsernameFromToken(token.substring(7))).get().getId();
+            return 55L;
     }
 }
