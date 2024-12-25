@@ -47,7 +47,7 @@ public class JwtTokenProvider {
 
         } catch (SignatureException | MalformedJwtException | UnsupportedJwtException |
                  IllegalArgumentException e) {
-            log.info(e.getMessage());
+            log.info("invalid token, {}", e.getMessage());
             return false;
         }
     }

@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (StringUtils.hasText(jwt)) {
                 try {
-                    tokenProvider.validateToken(jwt); // This will throw ExpiredJwtException if token is expired
+                    tokenProvider.validateToken(jwt);
 
                     String username = tokenProvider.getUsernameFromToken(jwt);
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
