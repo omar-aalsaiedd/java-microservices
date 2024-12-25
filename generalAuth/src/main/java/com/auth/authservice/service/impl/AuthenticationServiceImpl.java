@@ -57,8 +57,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
-        return new LoginResponseDTO().builder()
+        LoginResponseDTO responseDTO = new LoginResponseDTO().builder()
                 .token(jwt)
                 .build();
+        return responseDTO;
     }
 }
